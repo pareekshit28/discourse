@@ -25,16 +25,23 @@ class _ChatRoomState extends State<ChatRoom> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.yellow,
-          iconTheme: IconThemeData(color: Colors.black),
-          title: Text(widget.title, style: TextStyle(color: Colors.black)),
+      appBar: AppBar(
+        backgroundColor: Colors.yellow,
+        iconTheme: IconThemeData(color: Colors.black),
+        title: Text(
+          widget.title,
+          style: TextStyle(color: Colors.black, fontSize: 25),
         ),
-        body: Column(
-          children: [
-            Expanded(
-              child: Container(
-                color: Colors.yellow,
+        bottomOpacity: 0,
+        shadowColor: Colors.white10,
+      ),
+      backgroundColor: Colors.yellow,
+      body: Column(
+        children: [
+          Expanded(
+            child: Container(
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(7, 18, 5, 5),
                 child: StreamBuilder<QuerySnapshot>(
                     stream: widget.db
                         .collection("groups")
@@ -50,36 +57,89 @@ class _ChatRoomState extends State<ChatRoom> {
                               controller: widget._scrollController,
                               itemCount: snapshot.data.docs.length,
                               itemBuilder: (context, index) {
-                                return ListTile(
-                                    title: Text(
-                                      snapshot.data.docs
-                                          .elementAt(index)
-                                          .data()["sender"],
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w500,
-                                          color: snapshot.data.docs
-                                                      .elementAt(index)
-                                                      .data()["status"] ==
-                                                  "for"
-                                              ? Colors.green
-                                              : snapshot.data.docs
-                                                          .elementAt(index)
-                                                          .data()["status"] ==
-                                                      "against"
-                                                  ? Colors.red
-                                                  : Colors.blueAccent),
-                                    ),
-                                    subtitle: Text(
-                                      snapshot.data.docs
-                                          .elementAt(index)
-                                          .data()["content"],
-                                      style: TextStyle(color: Colors.black),
-                                    ),
-                                    trailing: Text(
-                                      readTimestamp(snapshot.data.docs
-                                          .elementAt(index)
-                                          .data()["date"]),
-                                    ));
+                                return Container(
+                                  child: Row(
+                                    children: [
+                                      Flexible(
+                                        flex: 4,
+                                        child: Container(
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 10, vertical: 7),
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.only(
+                                                topRight: Radius.circular(15),
+                                                topLeft: Radius.circular(15),
+                                                bottomRight:
+                                                    Radius.circular(15)),
+                                            color: snapshot.data.docs
+                                                        .elementAt(index)
+                                                        .data()["status"] ==
+                                                    "for"
+                                                ? Colors.green
+                                                : snapshot.data.docs
+                                                            .elementAt(index)
+                                                            .data()["status"] ==
+                                                        "against"
+                                                    ? Colors.red
+                                                    : Colors.blueAccent,
+                                          ),
+                                          child: Column(
+                                            children: [
+                                              Text(
+                                                snapshot.data.docs
+                                                    .elementAt(index)
+                                                    .data()["sender"],
+                                                style: TextStyle(
+                                                  fontSize: 15,
+                                                  fontWeight: FontWeight.w600,
+                                                  color: Colors.black,
+                                                  letterSpacing: 1.1,
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                height: 1.5,
+                                              ),
+                                              Text(
+                                                snapshot.data.docs
+                                                    .elementAt(index)
+                                                    .data()["content"],
+                                                style: TextStyle(
+                                                  fontSize: 17,
+                                                  fontWeight: FontWeight.w300,
+                                                  color: Colors.black,
+                                                  letterSpacing: 1,
+                                                ),
+                                              ),
+                                            ],
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                          ),
+                                        ),
+                                      ),
+                                      Flexible(
+                                          child: Padding(
+                                            padding:
+                                                const EdgeInsets.only(top: 7),
+                                            child: Text(
+                                              readTimestamp(snapshot.data.docs
+                                                  .elementAt(index)
+                                                  .data()["date"]),
+                                              style: TextStyle(
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w500,
+                                                  color: Colors.black),
+                                            ),
+                                          ),
+                                          flex: 1)
+                                    ],
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                  ),
+                                  margin: EdgeInsets.symmetric(vertical: 5),
+                                  decoration: BoxDecoration(),
+                                );
                               },
                             )
                           : Center(
@@ -90,26 +150,63 @@ class _ChatRoomState extends State<ChatRoom> {
                             );
                     }),
               ),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(40),
+                      topLeft: Radius.circular(40)),
+                  color: Colors.yellow //.fromRGBO(118, 4, 158, 0.78),
+                  ),
             ),
-            ListTile(
-              title: TextField(
-                controller: widget._controller,
-                decoration: InputDecoration(hintText: "Type Something..."),
-              ),
-              trailing: IconButton(
-                onPressed: () {
-                  widget.services
-                      .send(widget.id, widget._controller.text, widget.user);
-                  widget._controller.text = '';
-                },
-                icon: Icon(
-                  Icons.send,
-                  color: Colors.black,
+          ),
+          Container(
+            height: 70,
+            color: Colors.yellow, //.fromRGBO(118, 4, 158, 0.78),
+            padding: EdgeInsets.fromLTRB(10, 0, 10, 10),
+            child: ClipRRect(
+              child: Container(
+                decoration: BoxDecoration(
+                    border: Border.all(width: 2),
+                    borderRadius: BorderRadius.circular(26)),
+                padding: EdgeInsets.fromLTRB(13, 2, 13, 2),
+                child: ListTile(
+                  contentPadding: EdgeInsets.fromLTRB(-20, 0, -20, 5),
+                  title: TextField(
+                    controller: widget._controller,
+                    maxLines: 5,
+                    minLines: 1,
+                    textCapitalization: TextCapitalization.sentences,
+                    buildCounter: null,
+                    cursorHeight: 26.0,
+                    decoration: InputDecoration(
+                        hintText: "Type Something...",
+                        isDense: true,
+                        contentPadding:
+                            EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+                        counterText: "",
+                        fillColor: Colors.black,
+                        border: InputBorder.none),
+                  ),
+                  trailing: IconButton(
+                    onPressed: () {
+                      widget.services.send(
+                          widget.id, widget._controller.text, widget.user);
+                      widget._controller.text = '';
+                    },
+                    icon: Icon(
+                      Icons.send,
+                      color: Colors.black,
+                    ),
+                  ),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(40)),
+                  tileColor: Colors.yellow,
                 ),
               ),
-            )
-          ],
-        ));
+            ),
+          )
+        ],
+      ),
+    );
   }
 
   String readTimestamp(int timestamp) {
