@@ -70,14 +70,157 @@ class _HomePageState extends State<HomePage> {
                             color: Colors.black,
                           ),
                           onTap: () {
-                            Navigator.of(context).push(CupertinoPageRoute(
-                              builder: (context) => ChatRoom(
-                                title: snapshot.data.docs
-                                    .elementAt(index)["title"],
-                                id: snapshot.data.docs.elementAt(index)["id"],
-                                user: widget.user,
-                              ),
-                            ));
+                            final navigate = () =>
+                                Navigator.of(context).push(CupertinoPageRoute(
+                                  builder: (context) => ChatRoom(
+                                    title: snapshot.data.docs
+                                        .elementAt(index)["title"],
+                                    id: snapshot.data.docs
+                                        .elementAt(index)["id"],
+                                    user: widget.user,
+                                  ),
+                                ));
+                            widget.db
+                                .collection("groups")
+                                .doc(snapshot.data.docs.elementAt(index)["id"])
+                                .collection("users")
+                                .doc(widget.user.uid)
+                                .get()
+                                .then((value) {
+                              if (!value.exists) {
+                                showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    String _selected;
+                                    return Dialog(
+                                      child: StatefulBuilder(
+                                        builder: (BuildContext context,
+                                            void Function(void Function())
+                                                setState) {
+                                          return Padding(
+                                            padding: const EdgeInsets.only(
+                                                top: 16.0, bottom: 16),
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: [
+                                                Text(
+                                                  "What's your Inclination?",
+                                                  style:
+                                                      TextStyle(fontSize: 20),
+                                                ),
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(8.0),
+                                                  child: Wrap(
+                                                    children: [
+                                                      ChoiceChip(
+                                                        avatar: Icon(
+                                                          Icons.done,
+                                                          color: Colors.green,
+                                                        ),
+                                                        label: Text(
+                                                          'For',
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.green),
+                                                        ),
+                                                        selected:
+                                                            _selected == "for",
+                                                        onSelected:
+                                                            (bool selected) {
+                                                          setState(() {
+                                                            if (selected) {
+                                                              _selected = "for";
+                                                            } else
+                                                              _selected = '';
+                                                          });
+                                                        },
+                                                        selectedColor:
+                                                            Colors.black,
+                                                      ),
+                                                      SizedBox(
+                                                        width: 10,
+                                                      ),
+                                                      ChoiceChip(
+                                                        label: Text('Neutral',
+                                                            style: TextStyle(
+                                                                color: Colors
+                                                                    .blueAccent)),
+                                                        selected: _selected ==
+                                                            "neutral",
+                                                        onSelected:
+                                                            (bool selected) {
+                                                          setState(() {
+                                                            if (selected) {
+                                                              _selected =
+                                                                  "neutral";
+                                                            } else
+                                                              _selected = '';
+                                                          });
+                                                        },
+                                                        selectedColor:
+                                                            Colors.black,
+                                                      ),
+                                                      SizedBox(
+                                                        width: 10,
+                                                      ),
+                                                      ChoiceChip(
+                                                        avatar: Icon(
+                                                          Icons.close,
+                                                          color: Colors.red,
+                                                        ),
+                                                        label: Text('Against',
+                                                            style: TextStyle(
+                                                                color: Colors
+                                                                    .red)),
+                                                        selected: _selected ==
+                                                            "against",
+                                                        onSelected:
+                                                            (bool selected) {
+                                                          setState(() {
+                                                            if (selected) {
+                                                              _selected =
+                                                                  "against";
+                                                            } else
+                                                              _selected = '';
+                                                          });
+                                                        },
+                                                        selectedColor:
+                                                            Colors.black,
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                                MaterialButton(
+                                                    minWidth: 200,
+                                                    color: Colors.black,
+                                                    child: Icon(
+                                                      Icons.arrow_right_alt,
+                                                      color: Colors.white,
+                                                    ),
+                                                    onPressed: () {
+                                                      widget.services.setStatus(
+                                                          widget.user,
+                                                          snapshot.data.docs
+                                                              .elementAt(
+                                                                  index)["id"],
+                                                          _selected);
+                                                      Navigator.of(context)
+                                                          .pop();
+                                                      navigate();
+                                                    })
+                                              ],
+                                            ),
+                                          );
+                                        },
+                                      ),
+                                    );
+                                  },
+                                );
+                              } else {
+                                navigate();
+                              }
+                            });
                           },
                         );
                       })

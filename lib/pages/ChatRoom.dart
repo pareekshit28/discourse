@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:discourse/services.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -7,6 +9,7 @@ import 'package:intl/intl.dart';
 class ChatRoom extends StatefulWidget {
   final Services services = Services();
   final TextEditingController _controller = TextEditingController();
+  final ScrollController _scrollController = ScrollController();
   final FirebaseFirestore db = FirebaseFirestore.instance;
   final String title;
   final String id;
@@ -44,6 +47,7 @@ class _ChatRoomState extends State<ChatRoom> {
                         return Center(child: CircularProgressIndicator());
                       return snapshot.data.size > 0
                           ? ListView.builder(
+                              controller: widget._scrollController,
                               itemCount: snapshot.data.docs.length,
                               itemBuilder: (context, index) {
                                 return ListTile(
@@ -52,7 +56,18 @@ class _ChatRoomState extends State<ChatRoom> {
                                           .elementAt(index)
                                           .data()["sender"],
                                       style: TextStyle(
-                                          fontWeight: FontWeight.w500),
+                                          fontWeight: FontWeight.w500,
+                                          color: snapshot.data.docs
+                                                      .elementAt(index)
+                                                      .data()["status"] ==
+                                                  "for"
+                                              ? Colors.green
+                                              : snapshot.data.docs
+                                                          .elementAt(index)
+                                                          .data()["status"] ==
+                                                      "against"
+                                                  ? Colors.red
+                                                  : Colors.blueAccent),
                                     ),
                                     subtitle: Text(
                                       snapshot.data.docs
@@ -83,8 +98,8 @@ class _ChatRoomState extends State<ChatRoom> {
               ),
               trailing: IconButton(
                 onPressed: () {
-                  widget.services.send(widget.id, widget._controller.text,
-                      widget.user.displayName);
+                  widget.services
+                      .send(widget.id, widget._controller.text, widget.user);
                   widget._controller.text = '';
                 },
                 icon: Icon(
