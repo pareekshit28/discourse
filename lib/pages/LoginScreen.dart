@@ -16,19 +16,42 @@ class LoginScreen extends StatelessWidget {
         children: [
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.only(top: 60.0),
+              padding: EdgeInsets.only(top: 260.0, left: 10, right: 10),
               child: Container(
-                  child: Center(
-                      child: Text(
-                "Discourse",
-                style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
-              ))),
+                child: Center(
+                  child: Column(
+                    children: [
+                      Text(
+                        "Discourse",
+                        style: TextStyle(
+                          fontSize: 43,
+                          fontWeight: FontWeight.w600,
+                          letterSpacing: 2,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 40,
+                      ),
+                      Text(
+                        "Tune out the noise !!!\nChip in to present your standpoint.",
+                        style: TextStyle(
+                            fontSize: 36,
+                            fontWeight: FontWeight.w300,
+                            letterSpacing: 1.5,
+                            color: Colors.black),
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
+                    mainAxisAlignment: MainAxisAlignment.start,
+                  ),
+                ),
+              ),
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(bottom: 130),
+            padding: const EdgeInsets.only(bottom: 250),
             child: MaterialButton(
-              height: 50,
+              height: 57,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(40)),
               child: Row(
@@ -36,12 +59,15 @@ class LoginScreen extends StatelessWidget {
                 children: [
                   Image.asset(
                     "assets/images/google_logo.png",
-                    scale: 50,
+                    scale: 40,
                   ),
                   SizedBox(
-                    width: 8,
+                    width: 10,
                   ),
-                  Text("Sign in with Google")
+                  Text(
+                    "Sign in with Google",
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
+                  )
                 ],
               ),
               onPressed: () {

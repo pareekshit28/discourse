@@ -15,6 +15,8 @@ class CreateDebate extends StatelessWidget {
           'Create',
           style: TextStyle(color: Colors.black),
         ),
+        bottomOpacity: 0,
+        shadowColor: Colors.white10,
       ),
       body: Container(
         color: Colors.yellow,
@@ -23,16 +25,41 @@ class CreateDebate extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text("Title"),
+              Text(
+                "Topic",
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+              ),
               TextField(
                 controller: _titlecontroller,
+                textCapitalization: TextCapitalization.words,
+                buildCounter: null,
+                cursorHeight: 25.0,
+                decoration: InputDecoration(
+                  counterText: "",
+                  isDense: true,
+                  contentPadding: EdgeInsets.only(bottom: 10, top: 15, left: 0),
+                ),
               ),
               SizedBox(
                 height: 30,
               ),
-              Text("Description"),
+              Text(
+                "Description",
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+              ),
               TextField(
                 controller: _descriptioncontroller,
+                maxLines: 5,
+                minLines: 1,
+                cursorHeight: 25.0,
+                textCapitalization: TextCapitalization.sentences,
+                buildCounter: null,
+                decoration: InputDecoration(
+                  isDense: true,
+                  contentPadding: EdgeInsets.only(bottom: 10, top: 15, left: 0),
+                  counterText: "",
+                ),
+                style: TextStyle(fontWeight: FontWeight.w300),
               )
             ],
           ),
@@ -40,12 +67,16 @@ class CreateDebate extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton.extended(
         backgroundColor: Colors.black,
-        label: Text("Done"),
+        label: Text(
+          "Done",
+          style: TextStyle(fontSize: 18),
+        ),
         icon: Icon(Icons.done),
         onPressed: () {
           services.create(_titlecontroller.text, _descriptioncontroller.text);
           Navigator.of(context).pop();
         },
+        elevation: 0,
       ),
     );
   }
