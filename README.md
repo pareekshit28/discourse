@@ -46,4 +46,8 @@ The primary goal of the application is to promote contactless experiences along 
 2)Firebase/Firestore -> Authentication and Database
 
 
+# Future enhancement and scalabilty
 
+1)Using Twitter's API to fetch the list of trending topics and create channels automatically after every 24 hours.
+2)Implement Natural Language Processing [NLP] to automatically moderate the chats in the channels to maintain a healthy community.
+3)Reach out to companies which take customer feedback and reviews seriously and present them a solution where in it is easy to moderate the positive and the negative feedback of their products,services . A simple yet intuitive dashboard where in the green chats would indicate the positive feedback and the red chat indicating negative feedback and suggestions.  
