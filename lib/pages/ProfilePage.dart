@@ -1,10 +1,15 @@
+import 'package:discourse/pages/LoginScreen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
-void main() {
-  runApp(ProfilePage());
-}
+import 'package:google_sign_in/google_sign_in.dart';
 
 class ProfilePage extends StatefulWidget {
+  final User user;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final GoogleSignIn _googleSignIn = GoogleSignIn();
+
+  ProfilePage({this.user});
+
   @override
   _ProfilePageState createState() => _ProfilePageState();
 }
@@ -12,88 +17,79 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
+    return Scaffold(
         backgroundColor: Colors.yellow,
-        body: SafeArea(
-          child: Center(
-            child: Padding(
-              padding: const EdgeInsets.only(top: 160),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  CircleAvatar(
-                    radius: 80,
-                    backgroundColor: Colors.black,
-                    // backgroundImage: AssetImage('assets/images/1.png'),
-                  ),
-                  SizedBox(
-                    height: 30,
-                  ),
-                  Text(
-                    'MY FULL NAME',
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 23,
-                        // fontFamily: 'Source Sans Pro',
-                        letterSpacing: 3.5,
-                        fontWeight: FontWeight.w600,
-                        height: 1.5),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    'A short one line description ',
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 20,
-                        // fontFamily: 'Source Sans Pro',
-                        letterSpacing: 1.5,
-                        fontWeight: FontWeight.w400,
-                        height: 1.5),
-                  ),
-                  Container(
-                    height: 0.5,
-                    width: 150,
-                    color: Colors.black,
-                    margin: EdgeInsets.symmetric(vertical: 20),
-                  ),
-                  Container(
-                    // padding: EdgeInsets.symmetric(horizontal: 18, vertical: 13),
-                    margin: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-                    child: Text(
-                      "Your Discussions:",
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
-                    ),
-                  ),
-                  Card(
-                    margin: EdgeInsets.only(left: 35, right: 35, top: 150),
-                    color: Colors.yellow,
-                    child: ListTile(
-                      leading: Icon(
-                        Icons.email_outlined,
-                        color: Colors.black,
-                        size: 30,
-                      ),
-                      title: Text(
-                        "dangerdaniel@git.com",
-                        style: TextStyle(
-                          fontSize: 20,
-                          color: Colors.black,
-                          // fontFamily: 'Source Sans Pro',
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
+        appBar: AppBar(
+          iconTheme: IconThemeData(color: Colors.black),
+          backgroundColor: Colors.yellow,
+          title: Text(
+            "Profile",
+            style: TextStyle(color: Colors.black),
           ),
         ),
-      ),
-      debugShowCheckedModeBanner: false,
-    );
+        body: Container(
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                CircleAvatar(
+                  radius: 80,
+                  backgroundColor: Colors.black,
+                  child: ClipRRect(
+                    child: Image(
+                        image: NetworkImage(widget.user.photoURL, scale: 0.63)),
+                    borderRadius: BorderRadius.circular(100),
+                  ),
+                ),
+                SizedBox(height: 20),
+                Text(
+                  widget.user.displayName,
+                  style: TextStyle(fontSize: 30),
+                ),
+                SizedBox(height: 10),
+                Text(
+                  widget.user.email,
+                  style: TextStyle(fontSize: 20),
+                ),
+                SizedBox(height: 70),
+                MaterialButton(
+                    height: 57,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(40)),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(
+                          Icons.power_settings_new_rounded,
+                          color: Colors.white,
+                          size: 30,
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text(
+                          "Sign Out",
+                          style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.white),
+                        )
+                      ],
+                    ),
+                    onPressed: () {
+                      widget._auth
+                          .signOut()
+                          .then((value) => widget._googleSignIn.signOut())
+                          .then((value) => Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => LoginScreen()),
+                              ((Route route) => false)));
+                    },
+                    color: Colors.red),
+              ],
+            ),
+          ),
+        ));
   }
 }

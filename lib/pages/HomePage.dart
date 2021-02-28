@@ -38,33 +38,20 @@ class _HomePageState extends State<HomePage> {
         actions: [
           IconButton(
             icon: Icon(
-              Icons.person,
+              Icons.settings,
               color: Colors.white,
               size: 30,
             ),
             onPressed: () {
               Navigator.of(context).push(
                 CupertinoPageRoute(
-                  builder: (context) => ProfilePage(),
+                  builder: (context) => ProfilePage(
+                    user: widget.user,
+                  ),
                 ),
               );
             },
           ),
-          IconButton(
-              icon: Icon(
-                Icons.power_settings_new_rounded,
-                color: Colors.white,
-                size: 30,
-              ),
-              onPressed: () {
-                widget._auth
-                    .signOut()
-                    .then((value) => widget._googleSignIn.signOut())
-                    .then((value) => Navigator.pushAndRemoveUntil(
-                        context,
-                        MaterialPageRoute(builder: (context) => LoginScreen()),
-                        ((Route route) => false)));
-              }),
         ],
       ),
       body: Container(

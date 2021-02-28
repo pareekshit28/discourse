@@ -13,7 +13,7 @@ class ChatRoom extends StatefulWidget {
   final String id;
   final User user;
 
-  ChatRoom({Key key, this.title, this.id, this.user}) : super(key: key);
+  ChatRoom({this.title, this.id, this.user});
 
   @override
   _ChatRoomState createState() => _ChatRoomState();
