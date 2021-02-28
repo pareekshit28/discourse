@@ -1,8 +1,8 @@
 # Discourse : The Debating app
 
-It’s truly fascinating to acknowledge how we prefer rivers over puddles .While the former flows and expands ,the latter is stagnant . 
+It’s truly fascinating to acknowledge how we prefer rivers over puddles .While the former flows and expands, the latter is stagnant . 
 
-In the millennial times,where everything around us is constantly changing ,there arises a need for a platform wherein people can ideate , express and take their stand towards a particular topic.
+In the millennial times,where everything around us is constantly changing, there arises a need for a platform wherein people can ideate , express and take their stand towards a particular topic.
 
 Introducing ‘Discourse’,for the first time ever a unique ‘debating’ app where you are in charge of your ideas and opinions.Let your voice be heard , be it political,financial,social,trending topics.
 
@@ -44,6 +44,11 @@ The primary goal of the application is to promote contactless experiences along 
 1. Flutter -> Cross Platform App Development
 
 2. Firebase/Firestore -> Authentication and Database
+
+# Download Link
+
+Discourse.apk - https://drive.google.com/file/d/1S7EhguzoYIbrh4vbERDO-8uEv-mhngAH/view?usp=sharing
+(Note: Click Install anyway when prompted).
 
 
 # Future enhancement and scalabilty
