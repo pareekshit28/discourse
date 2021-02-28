@@ -22,8 +22,9 @@ class LoginScreen extends StatelessWidget {
               "Discourse",
               style: TextStyle(
                 fontSize: 43,
-                fontWeight: FontWeight.w600,
-                letterSpacing: 2,
+                fontWeight: FontWeight.w700,
+                fontFamily: "Quicksand",
+                letterSpacing: 1.5,
               ),
             ),
             SizedBox(
@@ -32,11 +33,12 @@ class LoginScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(bottom: 18.0),
               child: Text(
-                "Tune out the noise !!!\nChip in to present your standpoint.",
+                "Tune out the noise !!\nChip in to present your standpoint.",
                 style: TextStyle(
                     fontSize: 36,
-                    fontWeight: FontWeight.w300,
+                    fontWeight: FontWeight.w500,
                     letterSpacing: 1.5,
+                    fontFamily: "Source Sans Pro",
                     color: Colors.black),
                 textAlign: TextAlign.center,
               ),
@@ -45,7 +47,7 @@ class LoginScreen extends StatelessWidget {
               height: 40,
             ),
             Padding(
-              padding: const EdgeInsets.only(bottom: 130),
+              padding: const EdgeInsets.only(bottom: 200),
               child: MaterialButton(
                 height: 57,
                 shape: RoundedRectangleBorder(
@@ -62,8 +64,10 @@ class LoginScreen extends StatelessWidget {
                     ),
                     Text(
                       "Sign in with Google",
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
+                      style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w600,
+                          fontFamily: "Source Sans Pro"),
                     )
                   ],
                 ),

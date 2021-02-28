@@ -24,7 +24,11 @@ class _ProfilePageState extends State<ProfilePage> {
           backgroundColor: Colors.yellow,
           title: Text(
             "Profile",
-            style: TextStyle(color: Colors.black),
+            style: TextStyle(
+                color: Colors.black,
+                fontSize: 25,
+                fontFamily: "Source Sans Pro",
+                fontWeight: FontWeight.w700),
           ),
         ),
         body: Container(
@@ -44,12 +48,19 @@ class _ProfilePageState extends State<ProfilePage> {
                 SizedBox(height: 20),
                 Text(
                   widget.user.displayName,
-                  style: TextStyle(fontSize: 30),
+                  style: TextStyle(
+                      fontSize: 35,
+                      fontFamily: "Quicksand",
+                      fontWeight: FontWeight.w500),
                 ),
                 SizedBox(height: 10),
                 Text(
                   widget.user.email,
-                  style: TextStyle(fontSize: 20),
+                  style: TextStyle(
+                      fontSize: 20,
+                      fontFamily: "Source Sans Pro",
+                      fontWeight: FontWeight.w700,
+                      letterSpacing: 1.4),
                 ),
                 SizedBox(height: 70),
                 MaterialButton(
@@ -71,8 +82,10 @@ class _ProfilePageState extends State<ProfilePage> {
                           "Sign Out",
                           style: TextStyle(
                               fontSize: 20,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.white),
+                              color: Colors.white,
+                              fontFamily: "Source Sans Pro",
+                              fontWeight: FontWeight.w900,
+                              letterSpacing: 1.4),
                         )
                       ],
                     ),

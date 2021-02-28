@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:discourse/pages/ChatRoom.dart';
 import 'package:discourse/pages/CreateDebate.dart';
 import 'package:discourse/pages/ProfilePage.dart';
-import 'package:discourse/pages/LoginScreen.dart';
 import 'package:discourse/services.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -31,7 +30,12 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.black,
         title: Text(
           'Discourse',
-          style: TextStyle(color: Colors.white, fontSize: 25),
+          style: TextStyle(
+              color: Colors.white,
+              fontSize: 25,
+              fontFamily: "Quicksand",
+              fontWeight: FontWeight.w800,
+              letterSpacing: 1.5),
         ),
         bottomOpacity: 0,
         shadowColor: Colors.white10,
@@ -70,7 +74,9 @@ class _HomePageState extends State<HomePage> {
                           title: Text(
                             snapshot.data.docs.elementAt(index)["title"],
                             style: TextStyle(
-                                fontSize: 19, fontWeight: FontWeight.w500),
+                                fontSize: 22,
+                                fontWeight: FontWeight.w700,
+                                fontFamily: "Source Sans Pro"),
                           ),
                           subtitle: Padding(
                             padding: const EdgeInsets.only(top: 4.0),
@@ -79,6 +85,7 @@ class _HomePageState extends State<HomePage> {
                                   .elementAt(index)["description"],
                               style: TextStyle(
                                   color: Colors.black87,
+                                  fontSize: 15,
                                   fontWeight: FontWeight.w400),
                             ),
                           ),
@@ -278,7 +285,11 @@ class _HomePageState extends State<HomePage> {
       ),
       floatingActionButton: FloatingActionButton.extended(
         backgroundColor: Colors.black,
-        label: Text("Start a Discourse"),
+        label: Text(
+          "Start a Discourse",
+          style:
+              TextStyle(fontFamily: "Quicksand", fontWeight: FontWeight.w800),
+        ),
         icon: Icon(Icons.add),
         onPressed: () {
           Navigator.of(context).push(

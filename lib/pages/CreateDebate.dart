@@ -13,7 +13,11 @@ class CreateDebate extends StatelessWidget {
         iconTheme: IconThemeData(color: Colors.black),
         title: Text(
           'Create',
-          style: TextStyle(color: Colors.black),
+          style: TextStyle(
+              color: Colors.black,
+              fontSize: 25,
+              fontFamily: "Source Sans Pro",
+              fontWeight: FontWeight.w700),
         ),
         bottomOpacity: 0,
         shadowColor: Colors.white10,
@@ -27,7 +31,10 @@ class CreateDebate extends StatelessWidget {
             children: [
               Text(
                 "Topic",
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                style: TextStyle(
+                    fontSize: 19,
+                    fontFamily: "Source Sans Pro",
+                    fontWeight: FontWeight.w900),
               ),
               TextField(
                 controller: _titlecontroller,
@@ -45,7 +52,10 @@ class CreateDebate extends StatelessWidget {
               ),
               Text(
                 "Description",
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                style: TextStyle(
+                    fontSize: 19,
+                    fontFamily: "Source Sans Pro",
+                    fontWeight: FontWeight.w900),
               ),
               TextField(
                 controller: _descriptioncontroller,

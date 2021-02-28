@@ -28,7 +28,11 @@ class _ChatRoomState extends State<ChatRoom> {
         iconTheme: IconThemeData(color: Colors.black),
         title: Text(
           widget.title,
-          style: TextStyle(color: Colors.black, fontSize: 25),
+          style: TextStyle(
+              color: Colors.black,
+              fontSize: 25,
+              fontFamily: "Source Sans Pro",
+              fontWeight: FontWeight.w700),
         ),
         bottomOpacity: 0,
         shadowColor: Colors.white10,
