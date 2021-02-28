@@ -28,7 +28,7 @@ The primary goal of the application is to promote contactless experiences along 
 5) One step sign in using your Google account.
 
 
-#Tech stack and Framework
+# Tech stack and Framework
 
 1)Flutter -> Application Development
 2)Firebase -> Database
