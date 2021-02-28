@@ -1,3 +1,8 @@
+# Download Link
+
+Discourse.apk - https://drive.google.com/file/d/1S7EhguzoYIbrh4vbERDO-8uEv-mhngAH/view?usp=sharing
+(Note: Click Install anyway when prompted).
+
 # Discourse : The Debating app
 
 It’s truly fascinating to acknowledge how we prefer rivers over puddles .While the former flows and expands, the latter is stagnant . 
@@ -44,11 +49,6 @@ The primary goal of the application is to promote contactless experiences along 
 1. Flutter -> Cross Platform App Development
 
 2. Firebase/Firestore -> Authentication and Database
-
-# Download Link
-
-Discourse.apk - https://drive.google.com/file/d/1S7EhguzoYIbrh4vbERDO-8uEv-mhngAH/view?usp=sharing
-(Note: Click Install anyway when prompted).
 
 
 # Future enhancement and scalabilty
