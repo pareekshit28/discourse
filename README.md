@@ -31,6 +31,7 @@ The primary goal of the application is to promote contactless experiences along 
 # Tech stack and Framework
 
 1)Flutter -> Application Development
+
 2)Firebase -> Database
 
 
