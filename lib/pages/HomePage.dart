@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:discourse/pages/ChatRoom.dart';
 import 'package:discourse/pages/CreateDebate.dart';
+import 'package:discourse/pages/ProfilePage.dart';
 import 'package:discourse/pages/LoginScreen.dart';
 import 'package:discourse/services.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -27,16 +28,33 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.yellow,
+        backgroundColor: Colors.black,
         title: Text(
           'Discourse',
-          style: TextStyle(color: Colors.black),
+          style: TextStyle(color: Colors.white, fontSize: 25),
         ),
+        bottomOpacity: 0,
+        shadowColor: Colors.white10,
         actions: [
           IconButton(
+            icon: Icon(
+              Icons.person,
+              color: Colors.white,
+              size: 30,
+            ),
+            onPressed: () {
+              Navigator.of(context).push(
+                CupertinoPageRoute(
+                  builder: (context) => ProfilePage(),
+                ),
+              );
+            },
+          ),
+          IconButton(
               icon: Icon(
-                Icons.power_settings_new_outlined,
-                color: Colors.black,
+                Icons.power_settings_new_rounded,
+                color: Colors.white,
+                size: 30,
               ),
               onPressed: () {
                 widget._auth
@@ -46,10 +64,11 @@ class _HomePageState extends State<HomePage> {
                         context,
                         MaterialPageRoute(builder: (context) => LoginScreen()),
                         ((Route route) => false)));
-              })
+              }),
         ],
       ),
       body: Container(
+        padding: EdgeInsets.only(top: 20),
         color: Colors.yellow,
         child: StreamBuilder<QuerySnapshot>(
             stream: widget.db.collection("groups").snapshots(),
@@ -62,12 +81,24 @@ class _HomePageState extends State<HomePage> {
                       itemBuilder: (context, index) {
                         return ListTile(
                           title: Text(
-                              snapshot.data.docs.elementAt(index)["title"]),
-                          subtitle: Text(snapshot.data.docs
-                              .elementAt(index)["description"]),
+                            snapshot.data.docs.elementAt(index)["title"],
+                            style: TextStyle(
+                                fontSize: 19, fontWeight: FontWeight.w500),
+                          ),
+                          subtitle: Padding(
+                            padding: const EdgeInsets.only(top: 4.0),
+                            child: Text(
+                              snapshot.data.docs
+                                  .elementAt(index)["description"],
+                              style: TextStyle(
+                                  color: Colors.black87,
+                                  fontWeight: FontWeight.w400),
+                            ),
+                          ),
                           trailing: Icon(
-                            Icons.arrow_right_alt,
-                            color: Colors.black,
+                            Icons.arrow_forward_ios_rounded,
+                            size: 28,
+                            color: Colors.black87,
                           ),
                           onTap: () {
                             final navigate = () =>
@@ -93,6 +124,7 @@ class _HomePageState extends State<HomePage> {
                                   builder: (context) {
                                     String _selected;
                                     return Dialog(
+                                      backgroundColor: Colors.yellow,
                                       child: StatefulBuilder(
                                         builder: (BuildContext context,
                                             void Function(void Function())
@@ -104,7 +136,7 @@ class _HomePageState extends State<HomePage> {
                                               mainAxisSize: MainAxisSize.min,
                                               children: [
                                                 Text(
-                                                  "What's your Inclination?",
+                                                  "What's your Stand?",
                                                   style:
                                                       TextStyle(fontSize: 20),
                                                 ),
@@ -122,8 +154,13 @@ class _HomePageState extends State<HomePage> {
                                                           'For',
                                                           style: TextStyle(
                                                               color:
-                                                                  Colors.green),
+                                                                  Colors.green,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500),
                                                         ),
+                                                        backgroundColor:
+                                                            Colors.white,
                                                         selected:
                                                             _selected == "for",
                                                         onSelected:
@@ -142,10 +179,17 @@ class _HomePageState extends State<HomePage> {
                                                         width: 10,
                                                       ),
                                                       ChoiceChip(
-                                                        label: Text('Neutral',
-                                                            style: TextStyle(
-                                                                color: Colors
-                                                                    .blueAccent)),
+                                                        label: Text(
+                                                          'Neutral',
+                                                          style: TextStyle(
+                                                              color: Colors
+                                                                  .blueAccent,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500),
+                                                        ),
+                                                        backgroundColor:
+                                                            Colors.white,
                                                         selected: _selected ==
                                                             "neutral",
                                                         onSelected:
@@ -169,10 +213,16 @@ class _HomePageState extends State<HomePage> {
                                                           Icons.close,
                                                           color: Colors.red,
                                                         ),
-                                                        label: Text('Against',
-                                                            style: TextStyle(
-                                                                color: Colors
-                                                                    .red)),
+                                                        label: Text(
+                                                          'Against',
+                                                          style: TextStyle(
+                                                              color: Colors.red,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500),
+                                                        ),
+                                                        backgroundColor:
+                                                            Colors.white,
                                                         selected: _selected ==
                                                             "against",
                                                         onSelected:
@@ -192,11 +242,18 @@ class _HomePageState extends State<HomePage> {
                                                   ),
                                                 ),
                                                 MaterialButton(
-                                                    minWidth: 200,
+                                                    minWidth: 150,
                                                     color: Colors.black,
+                                                    shape:
+                                                        RoundedRectangleBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        18)),
                                                     child: Icon(
                                                       Icons.arrow_right_alt,
                                                       color: Colors.white,
+                                                      size: 30,
                                                     ),
                                                     onPressed: () {
                                                       widget.services.setStatus(
@@ -234,12 +291,14 @@ class _HomePageState extends State<HomePage> {
       ),
       floatingActionButton: FloatingActionButton.extended(
         backgroundColor: Colors.black,
-        label: Text("Create a Discussion"),
+        label: Text("Start a Discourse"),
         icon: Icon(Icons.add),
         onPressed: () {
-          Navigator.of(context).push(CupertinoPageRoute(
-            builder: (context) => CreateDebate(),
-          ));
+          Navigator.of(context).push(
+            CupertinoPageRoute(
+              builder: (context) => CreateDebate(),
+            ),
+          );
         },
       ),
     );
