@@ -16,7 +16,7 @@ class HomePage extends StatefulWidget {
 
   final User user;
 
-  HomePage({Key key, this.user}) : super(key: key);
+  HomePage({this.user});
 
   @override
   _HomePageState createState() => _HomePageState();

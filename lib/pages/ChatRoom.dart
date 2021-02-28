@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:discourse/services.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -50,6 +48,12 @@ class _ChatRoomState extends State<ChatRoom> {
                         .orderBy("date")
                         .snapshots(),
                     builder: (context, snapshot) {
+                      WidgetsBinding.instance.addPostFrameCallback((_) {
+                        if (widget._scrollController.hasClients) {
+                          widget._scrollController.jumpTo(widget
+                              ._scrollController.position.maxScrollExtent);
+                        }
+                      });
                       if (!snapshot.hasData)
                         return Center(child: CircularProgressIndicator());
                       return snapshot.data.size > 0
@@ -159,47 +163,42 @@ class _ChatRoomState extends State<ChatRoom> {
             ),
           ),
           Container(
-            height: 70,
             color: Colors.yellow, //.fromRGBO(118, 4, 158, 0.78),
-            padding: EdgeInsets.fromLTRB(10, 0, 10, 10),
+            padding: EdgeInsets.fromLTRB(16, 10, 10, 10),
             child: ClipRRect(
-              child: Container(
-                decoration: BoxDecoration(
-                    border: Border.all(width: 2),
-                    borderRadius: BorderRadius.circular(26)),
-                padding: EdgeInsets.fromLTRB(13, 2, 13, 2),
-                child: ListTile(
-                  contentPadding: EdgeInsets.fromLTRB(-20, 0, -20, 5),
-                  title: TextField(
-                    controller: widget._controller,
-                    maxLines: 5,
-                    minLines: 1,
-                    textCapitalization: TextCapitalization.sentences,
-                    buildCounter: null,
-                    cursorHeight: 26.0,
-                    decoration: InputDecoration(
-                        hintText: "Type Something...",
-                        isDense: true,
-                        contentPadding:
-                            EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-                        counterText: "",
-                        fillColor: Colors.black,
-                        border: InputBorder.none),
+              child: ListTile(
+                contentPadding: EdgeInsets.fromLTRB(-20, 0, -20, 0),
+                title: TextField(
+                  onTap: () {
+                    widget._scrollController.jumpTo(
+                        widget._scrollController.position.maxScrollExtent);
+                  },
+                  controller: widget._controller,
+                  maxLines: 5,
+                  minLines: 1,
+                  textCapitalization: TextCapitalization.sentences,
+                  buildCounter: null,
+                  decoration: InputDecoration(
+                      hintText: "Type Something...",
+                      isDense: true,
+                      contentPadding:
+                          EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+                      counterText: "",
+                      fillColor: Colors.black,
+                      border: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.black),
+                          borderRadius: BorderRadius.circular(28))),
+                ),
+                trailing: IconButton(
+                  onPressed: () {
+                    widget.services
+                        .send(widget.id, widget._controller.text, widget.user);
+                    widget._controller.text = '';
+                  },
+                  icon: Icon(
+                    Icons.send,
+                    color: Colors.black,
                   ),
-                  trailing: IconButton(
-                    onPressed: () {
-                      widget.services.send(
-                          widget.id, widget._controller.text, widget.user);
-                      widget._controller.text = '';
-                    },
-                    icon: Icon(
-                      Icons.send,
-                      color: Colors.black,
-                    ),
-                  ),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(40)),
-                  tileColor: Colors.yellow,
                 ),
               ),
             ),
