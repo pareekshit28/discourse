@@ -1,11 +1,32 @@
-# Download Link
+# Link To Download the App
 
 Discourse.apk - https://drive.google.com/file/d/1S7EhguzoYIbrh4vbERDO-8uEv-mhngAH/view?usp=sharing
-(Note: Click Install anyway when prompted).
+</br>(Note: Click Install anyway when prompted).
+
+# ScreenShots
+
+<img src="mockups/LoginScreen.png" 
+      alt="Login Screen"  width="550">
+<img src="mockups/HomePage.png" 
+      alt="Home Page"  width="550">
+
+</br>
+</br>
+<img src="mockups/OpinionBox.png" 
+      alt="Opinion Dialogue"  width="550">
+<img src="mockups/Profile.png" 
+      alt="Profile"  width="550">
+
+</br>
+</br>
+<p align="center">
+<img src="mockups/ChatScreen.png" 
+      alt="Chat Screen"  width="550" >
+</p>
 
 # Discourse : The Debating app
 
-It’s truly fascinating to acknowledge how we prefer rivers over puddles .While the former flows and expands, the latter is stagnant . 
+It’s truly fascinating to acknowledge how we prefer rivers over puddles .While the former flows and expands, the latter is stagnant .
 
 In the millennial times,where everything around us is constantly changing, there arises a need for a platform wherein people can ideate , express and take their stand towards a particular topic.
 
@@ -13,29 +34,23 @@ Introducing ‘Discourse’,for the first time ever a unique ‘debating’ app 
 
 As there are always 2 sides for a story , place your opinion to the opposite side of the same topic and debate it out . Updated daily with the trending topics , features to differentiate the for and the against side of a particular topic and much more !
 
-
 # Built for Hackverse 2.0-NITK Surathkal
 
 The primary goal of the application is to promote contactless experiences along with ensuring that all of us are connected to the latest ongoings and happenings of the world and to provide a platform wherein everybody could take a standpoint for a particular topic and debate over various topics to present their perspectives and listen to other's opinions and thoughts.
 
-# Tracks 
+# Tracks
 
 1. Let's connect
 
-   Discourse enables thinkers,critics and people like us to express our ideas and present our standpoint regarding a particular topic . There is a very good opportunity to bond    with like minded folks along with hearing rational points from the other side to maintain an overall sanctity of the discussion. 
-		
-   We often have ideas and opinions but are devoid of a dedicated platform meant to promote healthy discussion from both the sides of a particular topic.This was the main idea      behind 'Discourse' ,to provide a level playing field to everyone and ensure in shaping up a constructive and well informed community. 
+   Discourse enables thinkers,critics and people like us to express our ideas and present our standpoint regarding a particular topic . There is a very good opportunity to bond with like minded folks along with hearing rational points from the other side to maintain an overall sanctity of the discussion.
+   We often have ideas and opinions but are devoid of a dedicated platform meant to promote healthy discussion from both the sides of a particular topic.This was the main idea behind 'Discourse' ,to provide a level playing field to everyone and ensure in shaping up a constructive and well informed community.
 
 2. Let's go contactless
-		
-   The need of the hour is to implement processes which are devoid of human contact and could be digitized by making use of the technology known to us . While there are many 
-   debate groups and clubs in almost every college,school,not everybody prefers the conventional way of having a proper audio-video setup(during the current pandemic) ,ensuring    how presentable they are etc .
-		
-   We have designed 'Discourse' to people who are ready to debate over their concerned topics right at the comfort of their phone where ever they are ,without worrying about        any formalities,whatsoever .
-		
-    
+   The need of the hour is to implement processes which are devoid of human contact and could be digitized by making use of the technology known to us . While there are many
+   debate groups and clubs in almost every college,school,not everybody prefers the conventional way of having a proper audio-video setup(during the current pandemic) ,ensuring how presentable they are etc .
+   We have designed 'Discourse' to people who are ready to debate over their concerned topics right at the comfort of their phone where ever they are ,without worrying about any formalities,whatsoever .
 
-# Features 
+# Features
 
 1. Colour distinct chat bubbles to distinguish between the 'For' and the 'Against' side of the debated topic .
 2. Freedom to create discussion channels on the go.
@@ -43,13 +58,11 @@ The primary goal of the application is to promote contactless experiences along 
 4. View previous discussions that you were a part of.
 5. One step sign in using your Google account.
 
-
 # Tech stack and Framework
 
 1. Flutter -> Cross Platform App Development
 
 2. Firebase/Firestore -> Authentication and Database
-
 
 # Future enhancement and scalabilty
 
@@ -59,4 +72,4 @@ The primary goal of the application is to promote contactless experiences along 
 
 3. Reach out to companies which take customer feedback and reviews seriously and present them a solution where in it is easy to moderate the positive and the negative feedback
    of their products,services . A simple yet intuitive dashboard where in the green chats would indicate the positive feedback and the red chat indicating negative feedback and
-   suggestions.  
+   suggestions.
