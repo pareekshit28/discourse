@@ -3,26 +3,7 @@
 Discourse.apk - https://drive.google.com/file/d/1S7EhguzoYIbrh4vbERDO-8uEv-mhngAH/view?usp=sharing
 </br>(Note: Click Install anyway when prompted).
 
-# ScreenShots
 
-<img src="mockups/LoginScreen.png" 
-      alt="Login Screen"  width="550">
-<img src="mockups/HomePage.png" 
-      alt="Home Page"  width="550">
-
-</br>
-</br>
-<img src="mockups/OpinionBox.png" 
-      alt="Opinion Dialogue"  width="550">
-<img src="mockups/Profile.png" 
-      alt="Profile"  width="550">
-
-</br>
-</br>
-<p align="center">
-<img src="mockups/ChatScreen.png" 
-      alt="Chat Screen"  width="550" >
-</p>
 
 # Discourse : The Debating app
 
@@ -37,6 +18,38 @@ As there are always 2 sides for a story , place your opinion to the opposite sid
 # Built for Hackverse 2.0-NITK Surathkal
 
 The primary goal of the application is to promote contactless experiences along with ensuring that all of us are connected to the latest ongoings and happenings of the world and to provide a platform wherein everybody could take a standpoint for a particular topic and debate over various topics to present their perspectives and listen to other's opinions and thoughts.
+
+
+# ScreenShots
+<p align="center">
+<img src="mockups/LoginScreen.png" 
+      alt="Login Screen"  width="600">
+
+</p>
+</br>
+
+<p align="center">
+<img src="mockups/HomePage.png" 
+      alt="Home Page"  width="600">
+</p>
+
+
+</br>
+<p align="center">
+<img src="mockups/OpinionBox.png" 
+      alt="Opinion Dialogue"  width="600">
+</p>
+</br>
+<p align="center">
+<img src="mockups/Profile.png" 
+      alt="Profile"  width="600">
+</p>
+
+</br>
+<p align="center">
+<img src="mockups/ChatScreen.png" 
+      alt="Chat Screen"  width="600" >
+</p>
 
 # Tracks
 
